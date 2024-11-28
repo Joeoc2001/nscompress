@@ -6,6 +6,13 @@ publish = false
 
 [dependencies]
 libc = { version = "0.2", default-features = false }
+slab = { version = "0.4", default-features = false }
+
+# Debugging deps, disabled in final binary
+libc-print = { version = "0.1", optional = true }
+
+[build-dependencies]
+reqwest = { version = "0.12", features = ["blocking"] }
 
 [profile.release]
 strip = true
@@ -13,3 +20,7 @@ opt-level = "z"
 lto = "fat"
 codegen-units = 1
 panic = "abort"
+
+[features]
+default = ["stdout"]
+stdout = ["dep:libc-print"]

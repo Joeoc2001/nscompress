@@ -5,4 +5,4 @@ set -e
 ./build.sh
 
 target="$(rustc -vV | sed -n 's|host: ||p')"
-exec "./target/$target/release/nscompress"
+"./target/$target/release/nscompress" "$@"
